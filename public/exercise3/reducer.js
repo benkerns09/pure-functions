@@ -10,16 +10,22 @@ let initialState = {
 
 // This reducer isn't pure! Fix it plz
 const reducer = (state = initialState, action) => {
+	let copy = {
+		...state,
+		todos: state.todos.map((currentItem)=> {
+			return {...currentItem}
+		})
+	}
 	if (action.type == "ADD_TODO") {
-		state.todos.push({
+		copy.todos.push({
 			text: action.todoText,
 			isComplete: false
 		});
-		return state;
+		return copy;
 	} else if (action.type == "TOGGLE_TODO") {
-		let todoToToggle = state.todos[action.todoIndex];
+		let todoToToggle = copy.todos[action.todoIndex];
 		todoToToggle.isComplete = !todoToToggle.isComplete;
-		return state;
+		return copy;
 	} else {
 		return state;
 	}

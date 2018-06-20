@@ -5,9 +5,10 @@ let initialState = {
 // This reducer isn't pure! It updates the "counterValue" key of the original 
 //     state object
 const reducer = (state = initialState, action) => {
+	let stateCopy = Object.assign({}, state);
 	if (action.type == "INCREMENT") {
-		state.counterValue++;
-		return state;
+			stateCopy.counterValue++;
+			return stateCopy;
 	} else {
 		return state;
 	}
