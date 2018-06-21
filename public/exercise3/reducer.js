@@ -10,10 +10,11 @@ let initialState = {
 
 // This reducer isn't pure! Fix it plz
 const reducer = (state = initialState, action) => {
+	Object.freeze(state);//this will catch yourself if you actually type a mutating line
 	let copy = {
 		...state,
 		todos: state.todos.map((currentItem)=> {
-			return {...currentItem}
+			return {...currentItem}//returning a copy of the object in .map
 		})
 	}
 	if (action.type == "ADD_TODO") {
